@@ -1,0 +1,57 @@
+﻿@using Yokanjeo.Models.Home;
+@{
+    ViewBag.Title = "CheckoutDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+@if (Session["venta"] == null)
+{
+    <div class="alert alert-danger">
+        <strong>No product added to cart!</strong>
+    </div>
+
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Propiedad</th>
+                <th>Precio</th>
+                @*<th>Quantity</th>*@
+                <th>Total</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                int Total = 0;
+            }
+            @foreach (Item item in (List<Item>)Session["venta"])
+            {
+                int lineTotal = Convert.ToInt32(item.Cantidad * item.Propiedad.Precio);
+                Total = Convert.ToInt32(@Total + lineTotal);
+                <tr>
+                    <td>@item.Propiedad.PropiedadNombre</td>
+                    <td>@item.Propiedad.Precio</td>
+                    @*<td>@item.Cantidad</td*@
+                    <td>@lineTotal</td>
+                </tr>
+            }
+
+            <tr>
+
+                <td colspan="4" class="text-right"><b>Total: @Total</b></td>
+            </tr>
+        </tbody>
+    </table>
+
+    @*<a href="@Url.Action("PaymentWithPapal", "Payment")" class="btn btn-warning">Pago de propiedad</a>*@
+
+
+    @*<a class="btn btn-warning" href="@Url.Action("CheckoutDetails","Home")">Procesar pago </a>*@
+    @*<button class="btn btn-success">Payment >></button>*@
+
+}

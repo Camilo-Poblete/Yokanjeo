@@ -1,0 +1,766 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InmoYOKAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="Contrasenia" Type="varbinary" MaxLength="500" />
+        </EntityType>
+        <!--Errores durante la generación:
+advertencia 6013: La tabla o vista 'InmoYOKA.dbo.Imagenes' no tiene definida una clave principal y no es posible inferir ninguna clave principal válida. Esta tabla o vista se ha excluido. Para usar la entidad, necesitará revisar el esquema, agregar las claves correctas y quitar sus comentarios.
+        <EntityType Name="Imagenes">
+          <Property Name="IdUsuario" Type="int" />
+          <Property Name="Imagen" Type="image" />
+        </EntityType>-->
+        <EntityType Name="Tbl_CompraDetalle">
+          <Key>
+            <PropertyRef Name="CompraDetalleId" />
+          </Key>
+          <Property Name="CompraDetalleId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MiembroId" Type="int" />
+          <Property Name="Direccion" Type="varchar" MaxLength="500" />
+          <Property Name="Ciudad" Type="varchar" MaxLength="500" />
+          <Property Name="Estado" Type="varchar" MaxLength="500" />
+          <Property Name="Pais" Type="varchar" MaxLength="500" />
+          <Property Name="CodigoPostal" Type="varchar" MaxLength="50" />
+          <Property Name="CompraId" Type="int" />
+          <Property Name="Pagado" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="TipoPago" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tbl_ImagenMuestra">
+          <Key>
+            <PropertyRef Name="DiapositivaId" />
+          </Key>
+          <Property Name="DiapositivaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiapositivaTitulo" Type="varchar" MaxLength="500" />
+          <Property Name="DiapositivaImagen" Type="varchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="Tbl_MiembroRoles">
+          <Key>
+            <PropertyRef Name="MiembroRolesId" />
+          </Key>
+          <Property Name="MiembroRolesId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MiembroId" Type="int" />
+          <Property Name="RoleId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_Miembros">
+          <Key>
+            <PropertyRef Name="MiembroId" />
+          </Key>
+          <Property Name="MiembroId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PrimerNombre" Type="varchar" MaxLength="200" />
+          <Property Name="Apellido" Type="varchar" MaxLength="200" />
+          <Property Name="CorreoId" Type="varchar" MaxLength="200" />
+          <Property Name="Contrasena" Type="varchar" MaxLength="500" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Eliminar" Type="bit" />
+          <Property Name="Crear" Type="datetime" />
+          <Property Name="Modificar" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Tbl_Propiedad">
+          <Key>
+            <PropertyRef Name="PropiedadId" />
+          </Key>
+          <Property Name="PropiedadId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PropiedadNombre" Type="varchar" MaxLength="500" />
+          <Property Name="Tipoid" Type="int" />
+          <Property Name="Numero_habitaciones" Type="int" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Eliminar" Type="bit" />
+          <Property Name="metro_cuadrado" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="Precio" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="FechaCreacion" Type="datetime" />
+          <Property Name="ModificaCreacion" Type="datetime" />
+          <Property Name="Descripcion" Type="nvarchar" MaxLength="50" />
+          <Property Name="PropiedadImagen" Type="varchar(max)" />
+          <Property Name="Destacado" Type="bit" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Comuna" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Tbl_Roles">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RolNombre" Type="varchar" MaxLength="200" />
+        </EntityType>
+        <EntityType Name="Tbl_Tipo">
+          <Key>
+            <PropertyRef Name="Tipoid" />
+          </Key>
+          <Property Name="Tipoid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TipoNombre" Type="varchar" MaxLength="500" />
+          <Property Name="Activo" Type="bit" />
+          <Property Name="Eliminar" Type="bit" />
+        </EntityType>
+        <EntityType Name="Tbl_Venta">
+          <Key>
+            <PropertyRef Name="VentaId" />
+          </Key>
+          <Property Name="VentaId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MiembroId" Type="int" />
+          <Property Name="VentaStatusId" Type="int" />
+          <Property Name="Tipo_venta" Type="int" />
+          <Property Name="PropiedadId" Type="int" />
+        </EntityType>
+        <EntityType Name="Tbl_VentaStatus">
+          <Key>
+            <PropertyRef Name="VentaStatusId" />
+          </Key>
+          <Property Name="VentaStatusId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VentaStatus" Type="varchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id_usuarios" />
+          </Key>
+          <Property Name="Id_usuarios" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre_completo" Type="varchar" MaxLength="50" />
+          <Property Name="Correo" Type="varchar" MaxLength="50" />
+          <Property Name="Comuna" Type="varchar" MaxLength="50" />
+          <Property Name="Fecha" Type="date" />
+          <Property Name="Usuario" Type="varchar" MaxLength="50" />
+          <Property Name="Clave" Type="varbinary(max)" />
+        </EntityType>
+        <Association Name="FK__Tbl_Compr__Miemb__3C69FB99">
+          <End Role="Tbl_Miembros" Type="Self.Tbl_Miembros" Multiplicity="0..1" />
+          <End Role="Tbl_CompraDetalle" Type="Self.Tbl_CompraDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Miembros">
+              <PropertyRef Name="MiembroId" />
+            </Principal>
+            <Dependent Role="Tbl_CompraDetalle">
+              <PropertyRef Name="MiembroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Propi__Tipoi__3D5E1FD2">
+          <End Role="Tbl_Tipo" Type="Self.Tbl_Tipo" Multiplicity="0..1" />
+          <End Role="Tbl_Propiedad" Type="Self.Tbl_Propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Tipo">
+              <PropertyRef Name="Tipoid" />
+            </Principal>
+            <Dependent Role="Tbl_Propiedad">
+              <PropertyRef Name="Tipoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Venta__Propi__3E52440B">
+          <End Role="Tbl_Propiedad" Type="Self.Tbl_Propiedad" Multiplicity="0..1" />
+          <End Role="Tbl_Venta" Type="Self.Tbl_Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Propiedad">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="Tbl_Venta">
+              <PropertyRef Name="PropiedadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CambiarContrasenia" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+          <Parameter Name="Clave" Type="varchar" Mode="In" />
+          <Parameter Name="Patron" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="CargarImagen" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ComunaGet" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="searchcomuna" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="ContarUsuario" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Eliminar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GetSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="search" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="Perfil" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Registrar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Nombres_completo" Type="varchar" Mode="In" />
+          <Parameter Name="Correo" Type="varchar" Mode="In" />
+          <Parameter Name="Comuna" Type="varchar" Mode="In" />
+          <Parameter Name="Fecha" Type="date" Mode="In" />
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Clave" Type="varchar" Mode="In" />
+          <Parameter Name="Patron" Type="varchar" Mode="In" />
+          <Parameter Name="IdUsuario" Type="int" Mode="In" />
+          <Parameter Name="Imagen" Type="image" Mode="In" />
+        </Function>
+        <Function Name="SP_AgregarAdmin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasenia" Type="varchar" Mode="In" />
+          <Parameter Name="Patron" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="SP_Comunas" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_Validar_Admin" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Contrasenia" Type="varchar" Mode="In" />
+          <Parameter Name="Patron" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="Validar" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Usuario" Type="varchar" Mode="In" />
+          <Parameter Name="Clave" Type="varchar" Mode="In" />
+          <Parameter Name="Patron" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="InmoYOKAModelStoreContainer">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_CompraDetalle" EntityType="Self.Tbl_CompraDetalle" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_ImagenMuestra" EntityType="Self.Tbl_ImagenMuestra" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_MiembroRoles" EntityType="Self.Tbl_MiembroRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Miembros" EntityType="Self.Tbl_Miembros" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Propiedad" EntityType="Self.Tbl_Propiedad" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Roles" EntityType="Self.Tbl_Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Tipo" EntityType="Self.Tbl_Tipo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_Venta" EntityType="Self.Tbl_Venta" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tbl_VentaStatus" EntityType="Self.Tbl_VentaStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Tbl_Compr__Miemb__3C69FB99" Association="Self.FK__Tbl_Compr__Miemb__3C69FB99">
+            <End Role="Tbl_Miembros" EntitySet="Tbl_Miembros" />
+            <End Role="Tbl_CompraDetalle" EntitySet="Tbl_CompraDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Propi__Tipoi__3D5E1FD2" Association="Self.FK__Tbl_Propi__Tipoi__3D5E1FD2">
+            <End Role="Tbl_Tipo" EntitySet="Tbl_Tipo" />
+            <End Role="Tbl_Propiedad" EntitySet="Tbl_Propiedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Venta__Propi__3E52440B" Association="Self.FK__Tbl_Venta__Propi__3E52440B">
+            <End Role="Tbl_Propiedad" EntitySet="Tbl_Propiedad" />
+            <End Role="Tbl_Venta" EntitySet="Tbl_Venta" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InmoYOKAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Administrador">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasenia" Type="Binary" MaxLength="500" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tbl_CompraDetalle">
+          <Key>
+            <PropertyRef Name="CompraDetalleId" />
+          </Key>
+          <Property Name="CompraDetalleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MiembroId" Type="Int32" />
+          <Property Name="Direccion" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Ciudad" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Estado" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Pais" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CodigoPostal" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CompraId" Type="Int32" />
+          <Property Name="Pagado" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="TipoPago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Miembros" Relationship="Self.FK__Tbl_Compr__Miemb__3C69FB99" FromRole="Tbl_CompraDetalle" ToRole="Tbl_Miembros" />
+        </EntityType>
+        <EntityType Name="Tbl_ImagenMuestra">
+          <Key>
+            <PropertyRef Name="DiapositivaId" />
+          </Key>
+          <Property Name="DiapositivaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiapositivaTitulo" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="DiapositivaImagen" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_MiembroRoles">
+          <Key>
+            <PropertyRef Name="MiembroRolesId" />
+          </Key>
+          <Property Name="MiembroRolesId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MiembroId" Type="Int32" />
+          <Property Name="RoleId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Tbl_Miembros">
+          <Key>
+            <PropertyRef Name="MiembroId" />
+          </Key>
+          <Property Name="MiembroId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PrimerNombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Apellido" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="CorreoId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Contrasena" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Eliminar" Type="Boolean" />
+          <Property Name="Crear" Type="DateTime" Precision="3" />
+          <Property Name="Modificar" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Tbl_CompraDetalle" Relationship="Self.FK__Tbl_Compr__Miemb__3C69FB99" FromRole="Tbl_Miembros" ToRole="Tbl_CompraDetalle" />
+        </EntityType>
+        <EntityType Name="Tbl_Propiedad">
+          <Key>
+            <PropertyRef Name="PropiedadId" />
+          </Key>
+          <Property Name="PropiedadId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PropiedadNombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Tipoid" Type="Int32" />
+          <Property Name="Numero_habitaciones" Type="Int32" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Eliminar" Type="Boolean" />
+          <Property Name="metro_cuadrado" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="Precio" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="FechaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="ModificaCreacion" Type="DateTime" Precision="3" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PropiedadImagen" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Destacado" Type="Boolean" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Comuna" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Tbl_Tipo" Relationship="Self.FK__Tbl_Propi__Tipoi__3D5E1FD2" FromRole="Tbl_Propiedad" ToRole="Tbl_Tipo" />
+          <NavigationProperty Name="Tbl_Venta" Relationship="Self.FK__Tbl_Venta__Propi__3E52440B" FromRole="Tbl_Propiedad" ToRole="Tbl_Venta" />
+        </EntityType>
+        <EntityType Name="Tbl_Roles">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RolNombre" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Tbl_Tipo">
+          <Key>
+            <PropertyRef Name="Tipoid" />
+          </Key>
+          <Property Name="Tipoid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TipoNombre" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Activo" Type="Boolean" />
+          <Property Name="Eliminar" Type="Boolean" />
+          <NavigationProperty Name="Tbl_Propiedad" Relationship="Self.FK__Tbl_Propi__Tipoi__3D5E1FD2" FromRole="Tbl_Tipo" ToRole="Tbl_Propiedad" />
+        </EntityType>
+        <EntityType Name="Tbl_Venta">
+          <Key>
+            <PropertyRef Name="VentaId" />
+          </Key>
+          <Property Name="VentaId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MiembroId" Type="Int32" />
+          <Property Name="VentaStatusId" Type="Int32" />
+          <Property Name="Tipo_venta" Type="Int32" />
+          <Property Name="PropiedadId" Type="Int32" />
+          <NavigationProperty Name="Tbl_Propiedad" Relationship="Self.FK__Tbl_Venta__Propi__3E52440B" FromRole="Tbl_Venta" ToRole="Tbl_Propiedad" />
+        </EntityType>
+        <EntityType Name="Tbl_VentaStatus">
+          <Key>
+            <PropertyRef Name="VentaStatusId" />
+          </Key>
+          <Property Name="VentaStatusId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VentaStatus" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="Id_usuarios" />
+          </Key>
+          <Property Name="Id_usuarios" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre_completo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Correo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Comuna" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Fecha" Type="DateTime" Precision="0" />
+          <Property Name="Usuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <Association Name="FK__Tbl_Compr__Miemb__3C69FB99">
+          <End Role="Tbl_Miembros" Type="Self.Tbl_Miembros" Multiplicity="0..1" />
+          <End Role="Tbl_CompraDetalle" Type="Self.Tbl_CompraDetalle" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Miembros">
+              <PropertyRef Name="MiembroId" />
+            </Principal>
+            <Dependent Role="Tbl_CompraDetalle">
+              <PropertyRef Name="MiembroId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Propi__Tipoi__3D5E1FD2">
+          <End Role="Tbl_Tipo" Type="Self.Tbl_Tipo" Multiplicity="0..1" />
+          <End Role="Tbl_Propiedad" Type="Self.Tbl_Propiedad" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Tipo">
+              <PropertyRef Name="Tipoid" />
+            </Principal>
+            <Dependent Role="Tbl_Propiedad">
+              <PropertyRef Name="Tipoid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Tbl_Venta__Propi__3E52440B">
+          <End Role="Tbl_Propiedad" Type="Self.Tbl_Propiedad" Multiplicity="0..1" />
+          <End Role="Tbl_Venta" Type="Self.Tbl_Venta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tbl_Propiedad">
+              <PropertyRef Name="PropiedadId" />
+            </Principal>
+            <Dependent Role="Tbl_Venta">
+              <PropertyRef Name="PropiedadId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InmoYOKAEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Administrador" EntityType="Self.Administrador" />
+          <EntitySet Name="Tbl_CompraDetalle" EntityType="Self.Tbl_CompraDetalle" />
+          <EntitySet Name="Tbl_ImagenMuestra" EntityType="Self.Tbl_ImagenMuestra" />
+          <EntitySet Name="Tbl_MiembroRoles" EntityType="Self.Tbl_MiembroRoles" />
+          <EntitySet Name="Tbl_Miembros" EntityType="Self.Tbl_Miembros" />
+          <EntitySet Name="Tbl_Propiedad" EntityType="Self.Tbl_Propiedad" />
+          <EntitySet Name="Tbl_Roles" EntityType="Self.Tbl_Roles" />
+          <EntitySet Name="Tbl_Tipo" EntityType="Self.Tbl_Tipo" />
+          <EntitySet Name="Tbl_Venta" EntityType="Self.Tbl_Venta" />
+          <EntitySet Name="Tbl_VentaStatus" EntityType="Self.Tbl_VentaStatus" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <AssociationSet Name="FK__Tbl_Compr__Miemb__3C69FB99" Association="Self.FK__Tbl_Compr__Miemb__3C69FB99">
+            <End Role="Tbl_Miembros" EntitySet="Tbl_Miembros" />
+            <End Role="Tbl_CompraDetalle" EntitySet="Tbl_CompraDetalle" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Propi__Tipoi__3D5E1FD2" Association="Self.FK__Tbl_Propi__Tipoi__3D5E1FD2">
+            <End Role="Tbl_Tipo" EntitySet="Tbl_Tipo" />
+            <End Role="Tbl_Propiedad" EntitySet="Tbl_Propiedad" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Tbl_Venta__Propi__3E52440B" Association="Self.FK__Tbl_Venta__Propi__3E52440B">
+            <End Role="Tbl_Propiedad" EntitySet="Tbl_Propiedad" />
+            <End Role="Tbl_Venta" EntitySet="Tbl_Venta" />
+          </AssociationSet>
+          <FunctionImport Name="CambiarContrasenia">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Patron" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="CargarImagen" ReturnType="Collection(Binary)">
+            <Parameter Name="id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ComunaGet" ReturnType="Collection(String)">
+            <Parameter Name="searchcomuna" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ContarUsuario" ReturnType="Collection(Int32)">
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Eliminar">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GetSearch" ReturnType="Collection(InmoYOKAModel.GetSearch_Result)">
+            <Parameter Name="search" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Perfil" ReturnType="Collection(InmoYOKAModel.Perfil_Result)">
+            <Parameter Name="Id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Registrar">
+            <Parameter Name="Nombres_completo" Mode="In" Type="String" />
+            <Parameter Name="Correo" Mode="In" Type="String" />
+            <Parameter Name="Comuna" Mode="In" Type="String" />
+            <Parameter Name="Fecha" Mode="In" Type="DateTime" />
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Patron" Mode="In" Type="String" />
+            <Parameter Name="IdUsuario" Mode="In" Type="Int32" />
+            <Parameter Name="Imagen" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="SP_AgregarAdmin">
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contrasenia" Mode="In" Type="String" />
+            <Parameter Name="Patron" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="SP_Comunas" ReturnType="Collection(InmoYOKAModel.SP_Comunas_Result)" />
+          <FunctionImport Name="SP_Validar_Admin" ReturnType="Collection(InmoYOKAModel.SP_Validar_Admin_Result)">
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Contrasenia" Mode="In" Type="String" />
+            <Parameter Name="Patron" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="Validar" ReturnType="Collection(InmoYOKAModel.Validar_Result)">
+            <Parameter Name="Usuario" Mode="In" Type="String" />
+            <Parameter Name="Clave" Mode="In" Type="String" />
+            <Parameter Name="Patron" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GetSearch_Result">
+          <Property Type="Int32" Name="PropiedadId" Nullable="false" />
+          <Property Type="String" Name="PropiedadNombre" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Tipoid" Nullable="true" />
+          <Property Type="Int32" Name="Numero_habitaciones" Nullable="true" />
+          <Property Type="Boolean" Name="Activo" Nullable="true" />
+          <Property Type="Boolean" Name="Eliminar" Nullable="true" />
+          <Property Type="Decimal" Name="metro_cuadrado" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="Decimal" Name="Precio" Nullable="true" Precision="18" Scale="0" />
+          <Property Type="DateTime" Name="FechaCreacion" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ModificaCreacion" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Descripcion" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PropiedadImagen" Nullable="true" />
+          <Property Type="Boolean" Name="Destacado" Nullable="true" />
+          <Property Type="Int32" Name="Cantidad" Nullable="true" />
+          <Property Type="String" Name="Comuna" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Tipoid1" Nullable="true" />
+          <Property Type="String" Name="TipoNombre" Nullable="true" MaxLength="500" />
+          <Property Type="Boolean" Name="Activo1" Nullable="true" />
+          <Property Type="Boolean" Name="Eliminar1" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="Perfil_Result">
+          <Property Type="Int32" Name="Id_usuarios" Nullable="false" />
+          <Property Type="String" Name="Nombre_completo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Comuna" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="Clave" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_Comunas_Result">
+          <Property Type="Int32" Name="PropiedadId" Nullable="false" />
+          <Property Type="String" Name="Comuna" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="Tipoid" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="SP_Validar_Admin_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="Contrasenia" Nullable="true" MaxLength="500" />
+        </ComplexType>
+        <ComplexType Name="Validar_Result">
+          <Property Type="Int32" Name="Id_usuarios" Nullable="false" />
+          <Property Type="String" Name="Nombre_completo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Correo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Comuna" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="Fecha" Nullable="true" />
+          <Property Type="String" Name="Usuario" Nullable="true" MaxLength="50" />
+          <Property Type="Binary" Name="Clave" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InmoYOKAModelStoreContainer" CdmEntityContainer="InmoYOKAEntities">
+          <EntitySetMapping Name="Administrador">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Administrador">
+              <MappingFragment StoreEntitySet="Administrador">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_CompraDetalle">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Tbl_CompraDetalle">
+              <MappingFragment StoreEntitySet="Tbl_CompraDetalle">
+                <ScalarProperty Name="CompraDetalleId" ColumnName="CompraDetalleId" />
+                <ScalarProperty Name="MiembroId" ColumnName="MiembroId" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Ciudad" ColumnName="Ciudad" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="Pais" ColumnName="Pais" />
+                <ScalarProperty Name="CodigoPostal" ColumnName="CodigoPostal" />
+                <ScalarProperty Name="CompraId" ColumnName="CompraId" />
+                <ScalarProperty Name="Pagado" ColumnName="Pagado" />
+                <ScalarProperty Name="TipoPago" ColumnName="TipoPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_ImagenMuestra">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Tbl_ImagenMuestra">
+              <MappingFragment StoreEntitySet="Tbl_ImagenMuestra">
+                <ScalarProperty Name="DiapositivaId" ColumnName="DiapositivaId" />
+                <ScalarProperty Name="DiapositivaTitulo" ColumnName="DiapositivaTitulo" />
+                <ScalarProperty Name="DiapositivaImagen" ColumnName="DiapositivaImagen" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_MiembroRoles">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Tbl_MiembroRoles">
+              <MappingFragment StoreEntitySet="Tbl_MiembroRoles">
+                <ScalarProperty Name="MiembroRolesId" ColumnName="MiembroRolesId" />
+                <ScalarProperty Name="MiembroId" ColumnName="MiembroId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Miembros">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Tbl_Miembros">
+              <MappingFragment StoreEntitySet="Tbl_Miembros">
+                <ScalarProperty Name="MiembroId" ColumnName="MiembroId" />
+                <ScalarProperty Name="PrimerNombre" ColumnName="PrimerNombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="CorreoId" ColumnName="CorreoId" />
+                <ScalarProperty Name="Contrasena" ColumnName="Contrasena" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
+                <ScalarProperty Name="Crear" ColumnName="Crear" />
+                <ScalarProperty Name="Modificar" ColumnName="Modificar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Propiedad">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Tbl_Propiedad">
+              <MappingFragment StoreEntitySet="Tbl_Propiedad">
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="PropiedadNombre" ColumnName="PropiedadNombre" />
+                <ScalarProperty Name="Tipoid" ColumnName="Tipoid" />
+                <ScalarProperty Name="Numero_habitaciones" ColumnName="Numero_habitaciones" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
+                <ScalarProperty Name="metro_cuadrado" ColumnName="metro_cuadrado" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="ModificaCreacion" ColumnName="ModificaCreacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="PropiedadImagen" ColumnName="PropiedadImagen" />
+                <ScalarProperty Name="Destacado" ColumnName="Destacado" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Roles">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Tbl_Roles">
+              <MappingFragment StoreEntitySet="Tbl_Roles">
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="RolNombre" ColumnName="RolNombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Tipo">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Tbl_Tipo">
+              <MappingFragment StoreEntitySet="Tbl_Tipo">
+                <ScalarProperty Name="Tipoid" ColumnName="Tipoid" />
+                <ScalarProperty Name="TipoNombre" ColumnName="TipoNombre" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_Venta">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Tbl_Venta">
+              <MappingFragment StoreEntitySet="Tbl_Venta">
+                <ScalarProperty Name="VentaId" ColumnName="VentaId" />
+                <ScalarProperty Name="MiembroId" ColumnName="MiembroId" />
+                <ScalarProperty Name="VentaStatusId" ColumnName="VentaStatusId" />
+                <ScalarProperty Name="Tipo_venta" ColumnName="Tipo_venta" />
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tbl_VentaStatus">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Tbl_VentaStatus">
+              <MappingFragment StoreEntitySet="Tbl_VentaStatus">
+                <ScalarProperty Name="VentaStatusId" ColumnName="VentaStatusId" />
+                <ScalarProperty Name="VentaStatus" ColumnName="VentaStatus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="InmoYOKAModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="Id_usuarios" ColumnName="Id_usuarios" />
+                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CambiarContrasenia" FunctionName="InmoYOKAModel.Store.CambiarContrasenia" />
+          <FunctionImportMapping FunctionImportName="CargarImagen" FunctionName="InmoYOKAModel.Store.CargarImagen" />
+          <FunctionImportMapping FunctionImportName="ComunaGet" FunctionName="InmoYOKAModel.Store.ComunaGet" />
+          <FunctionImportMapping FunctionImportName="ContarUsuario" FunctionName="InmoYOKAModel.Store.ContarUsuario" />
+          <FunctionImportMapping FunctionImportName="Eliminar" FunctionName="InmoYOKAModel.Store.Eliminar" />
+          <FunctionImportMapping FunctionImportName="GetSearch" FunctionName="InmoYOKAModel.Store.GetSearch">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InmoYOKAModel.GetSearch_Result">
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="PropiedadNombre" ColumnName="PropiedadNombre" />
+                <ScalarProperty Name="Tipoid" ColumnName="Tipoid" />
+                <ScalarProperty Name="Numero_habitaciones" ColumnName="Numero_habitaciones" />
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="Eliminar" ColumnName="Eliminar" />
+                <ScalarProperty Name="metro_cuadrado" ColumnName="metro_cuadrado" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+                <ScalarProperty Name="FechaCreacion" ColumnName="FechaCreacion" />
+                <ScalarProperty Name="ModificaCreacion" ColumnName="ModificaCreacion" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="PropiedadImagen" ColumnName="PropiedadImagen" />
+                <ScalarProperty Name="Destacado" ColumnName="Destacado" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Tipoid1" ColumnName="Tipoid1" />
+                <ScalarProperty Name="TipoNombre" ColumnName="TipoNombre" />
+                <ScalarProperty Name="Activo1" ColumnName="Activo1" />
+                <ScalarProperty Name="Eliminar1" ColumnName="Eliminar1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Perfil" FunctionName="InmoYOKAModel.Store.Perfil">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InmoYOKAModel.Perfil_Result">
+                <ScalarProperty Name="Id_usuarios" ColumnName="Id_usuarios" />
+                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Registrar" FunctionName="InmoYOKAModel.Store.Registrar" />
+          <FunctionImportMapping FunctionImportName="SP_AgregarAdmin" FunctionName="InmoYOKAModel.Store.SP_AgregarAdmin" />
+          <FunctionImportMapping FunctionImportName="SP_Comunas" FunctionName="InmoYOKAModel.Store.SP_Comunas">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InmoYOKAModel.SP_Comunas_Result">
+                <ScalarProperty Name="PropiedadId" ColumnName="PropiedadId" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Tipoid" ColumnName="Tipoid" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_Validar_Admin" FunctionName="InmoYOKAModel.Store.SP_Validar_Admin">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InmoYOKAModel.SP_Validar_Admin_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Contrasenia" ColumnName="Contrasenia" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Validar" FunctionName="InmoYOKAModel.Store.Validar">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InmoYOKAModel.Validar_Result">
+                <ScalarProperty Name="Id_usuarios" ColumnName="Id_usuarios" />
+                <ScalarProperty Name="Nombre_completo" ColumnName="Nombre_completo" />
+                <ScalarProperty Name="Correo" ColumnName="Correo" />
+                <ScalarProperty Name="Comuna" ColumnName="Comuna" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

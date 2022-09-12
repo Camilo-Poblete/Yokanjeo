@@ -1,0 +1,45 @@
+﻿.logo {
+    display: flex;
+    align-items: center;
+    column-gap: 0.5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-color);
+    text-transform: uppercase;
+}
+
+
+.header .logo img {
+    height: 6rem;
+}
+
+
+
+
+.header .navbar-menu a:hover {
+    color: var(--orange);
+    border-bottom: .1rem solid var(--white);
+    padding-bottom: .5rem;
+}
+
+
+.header .navbar-menu {
+    position: absolute;
+    top: 100%;
+    right: -100%;
+    background: #fff;
+    width: 30rem;
+    height: calc(100vh - 9.5rem);
+}
+
+    .header .navbar-menu.active {
+        right: 0;
+    }
+
+    .header .navbar-menu a {
+        color: var(--black);
+        display: block;
+        margin: 1.5rem;
+        padding: .5rem;
+        font-size: 2rem;
+    }

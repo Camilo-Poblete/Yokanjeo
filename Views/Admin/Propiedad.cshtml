@@ -1,0 +1,58 @@
+﻿@model IEnumerable<Yokanjeo.DAL.Tbl_Propiedad>
+
+@{
+    ViewBag.Title = "Propiedad";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card mb-3">
+    <div class="card-header">
+        <i class="fa-solid fa-house-blank"></i>
+        Propiedades
+        @*<a href="../Admin/PropiedadAdd" class="btn btn-info pull-right fa fa-plus">Agregar  propiedad</a>*@
+
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Nombre propiedad</th>
+                        <th>Action</th>
+
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Sr. No.</th>
+                        <th>Nombre propiedad</th>
+                        <th>Action</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        int count = 1;
+
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.PropiedadNombre</td>
+                            <td>
+
+
+                                @Html.ActionLink("Edit", "PropiedadEdit", new { propiedadId = item.PropiedadId })
+
+
+                            </td>
+
+                        </tr>
+                        count++;
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>

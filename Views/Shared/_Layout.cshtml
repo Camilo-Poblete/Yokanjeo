@@ -1,0 +1,247 @@
+﻿@using Yokanjeo.Models.Home;
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    @*@Styles.Render("~/Content/css")*@
+
+
+    <link href="~/Content/MyMainLayOut.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="icon" type="imagen" href="../Images/Icono.jpg" />
+
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-8">
+                <div class="logo">
+                    <a href="../Home/Index"><img src="../Images/Icono.jpg" width="100" height="100" /></label></a>
+                    @*<h1><a href="#">Yo <span>YOKANJEO</span></a></h1>*@
+                    @*<p>My Shop</p>*@
+                </div>
+            </div>
+
+
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+
+                    <td>
+                    </td>
+
+
+
+                <li class="divider"></li>
+
+
+                <li><a href="@Url.Action("Checkout","Home")"></a></li>
+            </ul>
+            </li>
+            </ul>
+        </div>
+    </div>
+
+
+
+    </div>
+
+
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a data-toggle="dropdown" class=" dropdown-toggle fa fa-user-circle" aria-hidden="true" href="#">MI PERFIL <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+                @*@if (Session["venta"] != null)
+                    {
+                        foreach (var item in (List<Item>)Session["venta"])
+                        {
+                            <a href="@Url.Action("RemoveFromSale","Home", new { propiedadId= item.Propiedad.PropiedadId})">@item.Propiedad.PropiedadNombre (@item.Cantidad) <i class="fa fa-times"></i></a>
+                        }
+                    }*@
+
+
+
+                <li class="divider"></li>
+
+
+                <li><a href="~/Page/Perfil.aspx">PERFIL</a></li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+    </div>
+
+
+
+
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a data-toggle="dropdown" class=" dropdown-toggle fa fa-home" aria-hidden="true" href="#">Mis publicaciones <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+
+                <li class="divider"></li>
+
+
+                <li><a href="../Admin/Dashboard">Realizar publicacion</a></li>
+
+
+            </ul>
+        </li>
+    </ul>
+    </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+    <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+            <a data-toggle="dropdown" class=" dropdown-toggle fa fa-home" aria-hidden="true" href="#">Venta de Propiedad <b class="caret"></b></a>
+            <ul class="dropdown-menu">
+
+                @if (Session["venta"] != null)
+                {
+                    foreach (var item in (List<Item>)Session["venta"])
+                    {
+                        <a href="@Url.Action("RemoveFromSale","Home", new { propiedadId= item.Propiedad.PropiedadId})">@item.Propiedad.PropiedadNombre (@item.Cantidad) <i class="fa fa-times"></i></a>
+                    }
+                }
+
+
+
+                <li class="divider"></li>
+
+
+                <li><a href="@Url.Action("Checkout","Home")">Checkout</a></li>
+            </ul>
+        </li>
+    </ul>
+    </div>
+    </div>
+
+
+
+
+
+
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="nav-menus">
+
+                <ul class="nav nav-pills">
+                    <li class="active"><a style="border-radius:initial;" href="#">Home</a></li>
+                    <li class="active"><a style="border-radius:initial;" href="#">Location</a></li>
+                    <li class="active"><a style="border-radius:initial;" href="#">About</a></li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
+    @RenderBody()
+
+    <hr />
+
+
+    <div class="col-md-6 col-sm-6 col-xs-6">
+        <div class="dropdown text-end">
+            <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+
+                <asp:Image runat="server" ID="imgPerfil" Width="50" Height="50" CssClass="rounded-circle img-thumbnail" />
+
+
+
+            </a>
+
+            <ul class="dropdown-menu text-small" aria-labelledby="dropdownuser">
+                <li>
+                    <button class="dropdown-item">Nuevo </button>
+                </li>
+
+
+
+
+                @*@<div class="visible-xs">
+                    @*<div class="account">
+                           <ul>
+                               <li>
+                                   <div class="hidden-xs">
+                                       <h4><a>Call</a></h4>
+                                       <p>018##-######</p>
+                                   </div>
+
+                                   <div class="visible-xs">
+
+                                       <p>018##-######</p>
+                                   </div>
+
+                               </li>
+                           </ul>
+
+                        </div>*@
+
+
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">Cart(3) <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+
+                            <li class="divider"></li>
+                            <li><a href="@Url.Action("Checkout","Home")">Checkout</a></li>
+                        </ul>
+                    </li>
+                </ul>
+        </div>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="col-md-12 copyright">
+
+                <div class="col-md-6 col-sm-6 copyright-left">
+                    <p>&copy; @DateTime.Now.Year - YOKAJEO. All right reserved.</p>
+                </div>
+
+                <div class="col-md-6 col-sm-6 copyright-right">
+
+                    <ul class="list-unstyled list-social">
+                        <li><a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a></li>
+                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </footer>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

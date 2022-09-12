@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="95d67b0943f24bf5a82659191ca795f5" Name="Diagram1">
+        <EntityTypeShape EntityType="InmoYOKAModel.Administrador" Width="1.5" PointX="0.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Tbl_CompraDetalle" Width="1.5" PointX="8" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Tbl_ImagenMuestra" Width="1.5" PointX="2.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Tbl_MiembroRoles" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Tbl_Miembros" Width="1.5" PointX="5.75" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Tbl_Propiedad" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Tbl_Roles" Width="1.5" PointX="7.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Tbl_Tipo" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Tbl_Venta" Width="1.5" PointX="5.25" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Tbl_VentaStatus" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InmoYOKAModel.Usuarios" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <AssociationConnector Association="InmoYOKAModel.FK__Tbl_Compr__Miemb__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="InmoYOKAModel.FK__Tbl_Propi__Tipoi__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="InmoYOKAModel.FK__Tbl_Venta__Propi__3E52440B" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

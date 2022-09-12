@@ -1,0 +1,122 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    background-size: cover;
+    font-family: sans-serif;
+}
+
+
+.img {
+    background: no-repeat;
+    background-size: 10rem;
+    heigh: 665px;
+}
+
+
+.h2{
+    background:#ff6a00;
+}
+
+
+.loginbox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 350px;
+    height: 420px;
+    padding: 80px 40px;
+    box-sizing: border-box;
+    background: #444442ee;
+}
+
+.user {
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    top: calc(-100px/2);
+    left: calc(50% - 50px);
+    position: absolute;
+}
+
+.h2 {
+    padding: 0;
+    margin: 0;
+    text-align: center;
+   background: #ff6a00;
+}
+
+
+.lblUser, .lblpass {
+    font-weight: bold;
+    color: #fff;
+}
+
+.classUser, .classPass, .Btnsubmit {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.classUser, .classPass {
+    border: none;
+    border-bottom: 3px solid #FFAE42;
+    outline: none;
+    height: 40px;
+    color: #ffffff;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+::placeholder {
+    color: rgb(255, 255, 255);
+}
+
+.Btnsubmit {
+    border: none;
+    outline: none;
+    height: 40px;
+    height: 40px;
+    font-size: 16px;
+    color: #fff;
+    background-color: rgb(255, 112, 0);
+    cursor: pointer;
+    border-radius: 20px;
+    transition: .3s ease-in-out;
+}
+
+    .Btnsubmit:hover {
+        background-color: rgb(186, 161, 7);
+    }
+
+.btnforget {
+    font-size: 16px;
+    font-weight: 700;
+    text-decoration: none;
+    color: rgba(255, 112, 0);
+}
+
+    .btnforget:hover {
+        text-decoration: underline;
+    }
+
+
+
+.txtUser, .txtpass {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.txtUser, .txtpass {
+    border: none;
+    border-bottom: 3px solid #fff;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+    background-color: transparent;
+}
+
+
+.Contraseña {
+    color: #fff;
+}

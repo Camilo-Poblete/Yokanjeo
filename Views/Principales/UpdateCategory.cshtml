@@ -1,0 +1,51 @@
+﻿@model Yokanjeo.DAL.Tbl_Tipo
+
+@{
+    ViewBag.Title = "UpdateCategory";
+    Layout = "~/Views/Shared/_AddLayout.cshtml";
+}
+
+
+<div class="container-fluid">
+    <!-- Breadcrumbs-->
+
+
+    <br />
+
+    <br />
+
+    <br />
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="#">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item ">Categories</li>
+        <li class="breadcrumb-item active">Add New Category</li>
+
+
+    </ol>
+    <!-- DataTables Example -->
+    <div class="card mb-3">
+        <div class="card-header">
+            <i class="fas fa-table"></i>
+            Add New Category
+
+        </div>
+        <div class="card-body">
+            @using (Html.BeginForm("UpdateCategory", "Principales", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                @Html.HiddenFor(m => m.Tipoid)
+
+                <div class="form-group">
+                    <label class="control-label">Category Name</label>
+
+                    @Html.TextBoxFor(m => m.TipoNombre, new { @class = "form-control", placeholder = "Agregar tipo propiedad", required = "required", autofocus = "autofocus" })
+                    @Html.ValidationMessageFor(m => m.TipoNombre, "", new { @class = "text-danger" })
+                </div>
+
+                <a onclick="window.history.back();" class="btn btn-danger">Cancel</a>
+                <input type="submit" class="btn btn-primary" value="Save" />
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,10 @@
+﻿@media (max-width: 300px) {
+    .login-image {
+        display: initial;
+        
+    }
+}
+
+img {
+    width: 20%;
+}

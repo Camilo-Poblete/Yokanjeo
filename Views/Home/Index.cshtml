@@ -1,0 +1,164 @@
+﻿@model Yokanjeo.Models.Home.HomeIndexViewModel
+
+@using PagedList;
+@using PagedList.Mvc;
+
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div id="themeSlider" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+        <li data-target="#themeSlider" data-slide-to="0" class="active"></li>
+        <li data-target="#themeSlider" data-slide-to="1"></li>
+        <li data-target="#themeSlider" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <div class="imgOverlay"></div>
+            <img style="height:540px;width:100%" src="~/Images/cas10.jpg" alt="First slide">
+            <div class="carousel-caption">
+                <h3>New</h3>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:540px;width:100%" src="~/Images/casa2.jpg" alt="Second slide">
+            <div class="carousel-caption">
+                <h3>My Phone</h3>
+
+            </div>
+        </div>
+        <div class="item">
+            <div class="imgOverlay"></div>
+            <img style="height:540px;width:100%" src="~/Images/casa6.jpg" alt="Third slide">
+            <div class="carousel-caption">
+                <h3>Latest</h3>
+
+            </div>
+        </div>
+    </div>
+    <a class="left carousel-control" href="#themeSlider" data-slide="prev">
+        <span class="fa fa-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#themeSlider" data-slide="next">
+        <span class="fa fa-chevron-right"></span>
+    </a>
+
+</div>
+
+
+<div class="olSearch f1">
+    <h2 stle="color:black">Buscar Propiedades/Tipo</h2>
+</div>
+<form method="post">
+
+    <div class="olSearch fr">
+        <input type="text" name="search" placeholder="Entrar" class="inputComn houseText" />
+        <br />
+
+        <hr />
+
+
+        <div class="input-group">
+            <div id="search-autocomplete" class="form-outline">
+              
+
+                
+            </div>
+
+        </div>
+    
+
+
+
+
+
+        <div class="searchIcon">
+            <button type="submit" class="searchBtn">
+                <img src="~/Images/searchIcon.png" />
+            </button>
+        </div>
+    </div>
+</form>
+
+<div>
+
+
+</div>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="page-header">
+            <h2> Nuestras propiedades <small>propiedades en tendencias</small></h2>
+
+            <div class="row propiedad-container">
+
+
+
+
+                <div class="center">
+                    <div class="row propiedad-container">
+                        @foreach (var item in Model.PropiedadList)
+                        {
+                            <div class="col-md-3 col-sm-3 col-xs-6" style="margin-bottom:10px">
+                                <div class="thumbnail propiedad-item" style="height:230px">
+
+                                    <img class="img-responsive" title="Click detalles propiedad"
+                                         style="cursor:pointer;height:250px;width:170%"
+                                         src="~/PropiedadImg/@item.PropiedadImagen" />
+
+
+                                    <div class=" caption propiedad-container card-body">
+                                        <h5> <i>@item.PropiedadNombre  </h5>
+                                        <h5> <i class="bx bx-bath">@item.Numero_habitaciones Habitaciones</i></h5>
+                                        <i>@item.Comuna Comuna</i>
+
+                                        <h5>@item.Precio UF </h5>
+
+                                        <p>
+                                            @if (item.Cantidad > 0)
+                                            {
+                                                using (Html.BeginForm("AddVenta", "Home", new { propiedadId = item.PropiedadId }, FormMethod.Post))
+                                                {
+                                                    <button type="submit" class="pull-right"><i class=" fa fa-home"></i></button>
+                                                }
+                                            <p>En venta</p>
+                                        }
+                                        else
+                                        {
+                                            <p>Vendida</p>
+                                        }
+                                            </p>
+                                            <div class="propiedad-item-badge">
+                                                @if (item.Destacado == true)
+                                                {
+                                                    <p>Nueva publicacion</p>
+
+                                                }
+                                                else
+                                                {
+                                                    <p>Antigua publicacion</p>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+
+
+                    </div>
+                </div>
+
+               
+                <div class="container">
+                    @Html.PagedListPager(Model.PropiedadList, page => Url.Action("Index", new { page, search = Request.QueryString["search"] }), new PagedListRenderOptions() { Display = PagedListDisplayMode.IfNeeded, DisplayItemSliceAndTotal = true })
+                </div>
+
+

@@ -1,0 +1,46 @@
+﻿@using Yokanjeo.Models.Home;
+@{
+    ViewBag.Title = "Checkout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Checkout</h2>
+@if (Session["venta"] == null)
+{
+    <div class="alert alert-danger">
+        <strong>No product added to cart!</strong>
+    </div>
+
+}
+else
+{
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Propiedad</th>
+                @*<th>Quantity</th>*@
+                <th>Agregar</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Item item in (List<Item>)Session["venta"])
+            {
+                <tr>
+                    <td>@item.Propiedad.PropiedadNombre</td>
+                    @*<td>@item.Cantidad</td>*@
+                    <td>
+                        <a href="@Url.Action("AddVenta", "Home", new { propiedadId = item.Propiedad.PropiedadId, url="Checkout" })">
+                            <i class="fa fa-plus"></i>
+                        </a>
+                        <a href="@Url.Action("DecreaseQty", "Home", new { propiedadId = item.Propiedad.PropiedadId })">
+                            <i class="fa fa-minus"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
+    <a class="btn btn-warning" href="@Url.Action("CheckoutDetails","Home")">Seguimiento compra </a>
+
+}
